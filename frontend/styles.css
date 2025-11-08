@@ -1,0 +1,15 @@
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+pre#answer {
+  min-height: 80px;
+  white-space: pre-wrap;
+}
+
+.brand-badge {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0d6efd;
+}
