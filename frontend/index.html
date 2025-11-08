@@ -14,23 +14,155 @@
   </head>
   <body class="bg-light">
     <div class="container py-5">
-      <p class="brand-badge mb-1">uab the hack · demo</p>
-      <h1 class="mb-4">UAB Smart (nom del projecte)</h1>
-      <div class="alert alert-info" role="alert">
-        Obre el backend (<code>http://127.0.0.1:8000/health</code>) abans
-        d'enviar preguntes.
+      <header class="mb-5 text-center">
+        <p class="brand-badge mb-1">uab the hack · demo</p>
+        <h1 class="mb-2">UAB Smart (nom del projecte)</h1>
+        <p class="text-muted">
+          Selecciona una secció per obrir un modal i carregar la visualització corresponent.
+        </p>
+      </header>
+
+      <section>
+        <h2 class="h4 mb-3">Exploració de dades</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-3">
+            <button
+              type="button"
+              class="section-card btn btn-outline-primary w-100 text-start h-100"
+              data-bs-toggle="modal"
+              data-bs-target="#apsModal"
+            >
+              <span class="section-label">Activitat d'APs</span>
+              <span class="section-caption">Client count vs temps</span>
+            </button>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <button
+              type="button"
+              class="section-card btn btn-outline-primary w-100 text-start h-100"
+              data-bs-toggle="modal"
+              data-bs-target="#clientsModal"
+            >
+              <span class="section-label">Clients connectats</span>
+              <span class="section-caption">Distribució temporal</span>
+            </button>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <button
+              type="button"
+              class="section-card btn btn-outline-primary w-100 text-start h-100"
+              data-bs-toggle="modal"
+              data-bs-target="#hourModal"
+            >
+              <span class="section-label">Patrons horaris</span>
+              <span class="section-caption">Heatmap per hora/dia</span>
+            </button>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <button
+              type="button"
+              class="section-card btn btn-outline-primary w-100 text-start h-100"
+              data-bs-toggle="modal"
+              data-bs-target="#qualityModal"
+            >
+              <span class="section-label">Qualitat de senyal</span>
+              <span class="section-caption">Comparativa per banda</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Modals -->
+    <div
+      class="modal fade"
+      id="apsModal"
+      tabindex="-1"
+      aria-labelledby="apsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="apsModalLabel">Activitat d'APs</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">
+              Aquí pots incrustar la sortida del teu script Python per visualitzar client_count vs timestamp.
+            </p>
+            <div id="chart-aps" class="chart-placeholder"></div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="msg" class="form-label">Pregunta (en català)</label>
-        <input id="msg" class="form-control" placeholder="On tinc classe ara?" />
+    <div
+      class="modal fade"
+      id="clientsModal"
+      tabindex="-1"
+      aria-labelledby="clientsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="clientsModalLabel">Clients connectats</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">
+              Utilitza aquesta àrea per carregar una visualització Python de l'activitat de clients.
+            </p>
+            <div id="chart-clients" class="chart-placeholder"></div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <button id="send" class="btn btn-primary">Enviar</button>
+    <div
+      class="modal fade"
+      id="hourModal"
+      tabindex="-1"
+      aria-labelledby="hourModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hourModalLabel">Patrons horaris</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">
+              Mostra gràfics per hora/dia aprofitant les dades de clients filtrades.
+            </p>
+            <div id="chart-hour" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <div class="mt-4">
-        <h5>Resposta:</h5>
-        <pre id="answer" class="border p-3 bg-white"></pre>
+    <div
+      class="modal fade"
+      id="qualityModal"
+      tabindex="-1"
+      aria-labelledby="qualityModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="qualityModalLabel">Qualitat de senyal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">
+              Afegeix aquí els gràfics comparatius (2.4GHz vs 5GHz, per exemple) generats amb Python.
+            </p>
+            <div id="chart-quality" class="chart-placeholder"></div>
+          </div>
+        </div>
       </div>
     </div>
 
