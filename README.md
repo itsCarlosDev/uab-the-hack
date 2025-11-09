@@ -1,90 +1,123 @@
-# UAB THE HACK!
+Analizador Geoespacial WiFi de la UAB (UAB THE HACK! 2025)
 
-Proyecto base para el hackathon de la UAB (2º curso). Objetivo: mostrar un asistente sencillo con frontend Bootstrap y backend FastAPI listo para conectarse a un LLM o a datos estructurados.
+Este proyecto analiza los datos de la red WiFi del campus de la UAB, proporcionados para el hackathon UAB THE HACK! 2025.
 
-## Estructura del repositorio
+El script main.py lee los datos de los Puntos de Acceso (APs) y de los clientes conectados, los procesa y genera tres mapas dinámicos e interactivos en formato .html.
 
-```
-.
-├── backend/          # FastAPI + futuras integraciones de datos
-├── frontend/         # HTML/JS/CSS para la demo
-└── scripts/          # Lanzadores rápidos (bash y PowerShell)
-```
+¿Qué hace el script?
 
-## Requisitos previos
+El script main.py realiza las siguientes operaciones:
 
-- Python 3.10 o superior con `pip`.
-- PowerShell 7+ (Windows) o bash/zsh (macOS/Linux).
-- Navegador moderno (Chrome, Edge o Firefox).
+Carga dos fuentes de datos:
 
-## Instalación
+rookie_filtered_aps.json: Contiene la información de los Puntos de Acceso (APs), incluyendo su nombre y sus coordenadas de ubicación (x, y).
 
-```bash
-git clone https://github.com/itsCarlosDev/uab-the-hack.git
-cd uab-the-hack
-python -m venv .venv        # En Windows: py -3 -m venv .venv
-source .venv/bin/activate   # En Windows: .\\.venv\\Scripts\\activate
-pip install -r backend/requirements.txt
-```
+rookie_filtered_clients.json: Un registro de conexiones de clientes, incluyendo la hora, el AP al que se conectó, la salud (health) de la conexión y la intensidad de la señal (signal_db).
 
-> `pandas`, `sqlmodel` y `python-dotenv` ya están listos para cuando integremos datos/secretos. De momento no requieren configuración extra.
+Conversión de Coordenadas: Convierte las coordenadas x, y de los APs (que están en formato UTM EPSG:25831) a Latitud, Longitud (EPSG:4326), que es el formato que los mapas web entienden.
 
-## Ejecución para la demo
+Procesado y Agregación: Agrupa los miles de registros de clientes por AP, Día y Hora. Para cada grupo, calcula:
 
-### Opción recomendada (scripts)
+La salud media (avg_health).
 
-macOS/Linux:
+La señal media (avg_signal_db).
 
-```bash
-./scripts/run_backend.sh
-./scripts/run_frontend.sh
-```
+El número total de clientes (num_clients_metricos).
 
-Windows (PowerShell):
+Generación de Mapas (Bubble Map): Utiliza la librería folium y el plugin TimestampedGeoJson para crear tres mapas dinámicos.
 
-```powershell
-pwsh scripts/run_backend.ps1
-pwsh scripts/run_frontend.ps1
-```
+Evita el "Stacking": El script se ha diseñado específicamente para solucionar el problema de "apilamiento". Usando duration='PT1H', cada círculo de datos solo "vive" durante una hora en la animación, limpiando el mapa en cada paso de tiempo.
 
-### Opción manual
+Centrado y Rápido: Los mapas se cargan centrados en un punto clave del campus (Veterinaria) y la animación está configurada a alta velocidad (max_speed=100).
 
-1. **Backend**
-   ```bash
-   cd backend
-   uvicorn main:app --reload
-   ```
-2. **Frontend**
-   ```bash
-   cd frontend
-   python -m http.server 8001
-   ```
-3. Abre [http://127.0.0.1:8001](http://127.0.0.1:8001) y lanza tu pregunta. El `fetch` apunta a `http://127.0.0.1:8000/api/chat`.
+Los 3 Mapas Generados
 
-## Endpoints disponibles
+El script produce tres archivos .html interactivos. Todos incluyen un slider de tiempo y un botón de "Play".
 
-| Método | Ruta        | Descripción                                |
-|--------|-------------|--------------------------------------------|
-| GET    | `/health`   | Status de la API para comprobaciones rápidas |
-| POST   | `/api/chat` | Recibe `{ "message": str }` y devuelve eco |
+1. mapa_health_dinamico.html
 
-> CORS está activado para orígenes locales (`localhost`, `127.0.0.1`, `file://`) así la página funciona aunque se abra directamente desde el disco.
+Qué muestra: La "Salud" media de la conexión en cada AP.
 
-## Checklist previa a la demo
+Visualización: Círculos de tamaño fijo.
 
-1. Crear/activar el entorno virtual y ejecutar `pip install -r backend/requirements.txt`.
-2. Lanzar backend y frontend con los scripts (o comandos manuales).
-3. Verificar `http://127.0.0.1:8000/health`.
-4. Probar al menos una pregunta desde la UI.
-5. Preparar speech rápido: qué hace el backend ahora, qué datos/LLM se van a conectar después.
+Color: El color del círculo cambia dinámicamente (de Rojo [mala salud, 0] a Verde [buena salud, 100]).
 
-## Estructura de commits
+2. mapa_signal_dinamico.html
 
-- `feat`: añadir endpoint /api/chat en FastAPI
-- `feat`: crear pantalla principal con Bootstrap
-- `fix`: corregir llamada a la API del LLM
-- `refactor`: separar rutas del backend en módulos
-- `docs`: actualizar README con instrucciones de ejecución
-- `chore`: añadir config básica de gitignore y estructura de proyecto
+Qué muestra: La "Señal" media (dBm) en cada AP.
 
-¡Listo para iterar y enseñar al jurado!
+Visualización: Círculos de tamaño fijo.
+
+Color: El color del círculo cambia dinámicamente (de Rojo [mala señal, -90dBm] a Verde [buena señal, -30dBm]).
+
+3. mapa_clientes_dinamico.html (El Mapa Principal)
+
+Qué muestra: El número total de clientes conectados a cada AP.
+
+Visualización: ¡Círculos de TAMAÑO DINÁMICO!
+
+El Radio del círculo se hace más grande cuantos más clientes hay.
+
+El Borde del círculo cambia de color (de Verde [pocos clientes] a Rojo [muchos clientes]).
+
+El Relleno del círculo es transparente para poder ver el marcador del AP que hay debajo.
+
+Instalación y Uso
+
+Sigue estos pasos para ejecutar el proyecto.
+
+1. Entorno y Librerías
+
+Se asume que estás usando un entorno virtual de Python (ej: .venv).
+
+Instala todas las librerías necesarias con pip (asegúrate de tener tu entorno virtual activado):
+
+# Instala las librerías principales para mapas, datos y conversión
+py -m pip install folium pandas pyproj branca
+
+# Instala las dependencias que 'pandas' puede necesitar
+py -m pip install numpy pytz python-dateutil tzdata
+
+
+2. Estructura de Archivos
+
+Asegúrate de tener tus archivos en la misma carpeta:
+
+HACKATHON 2025/
+│
+├── .venv/                   (Tu entorno virtual)
+├── main.py                  (Este script)
+├── rookie_filtered_aps.json   (Datos de APs)
+└── rookie_filtered_clients.json (Datos de Clientes)
+
+
+3. Ejecución
+
+Una vez instaladas las librerías, simplemente ejecuta el script main.py desde tu terminal:
+
+py main.py
+
+
+4. Resultados
+
+El script tardará unos segundos en procesar todos los datos. Cuando termine, verás los siguientes mensajes y ya podrás abrir los archivos .html en tu navegador:
+
+Script iniciado...
+Cargando y procesando clientes...
+[...]
+Formateando datos GeoJSON...
+Creando mapa: mapa_health_dinamico.html
+¡Mapa guardado! -> mapa_health_dinamico.html
+Creando mapa: mapa_signal_dinamico.html
+¡Mapa guardado! -> mapa_signal_dinamico.html
+Creando mapa: mapa_clientes_dinamico.html
+¡Mapa guardado! -> mapa_clientes_dinamico.html
+
+¡Proceso completado! Revisa los TRES archivos .html generados.
+
+
+Nota Importante sobre la Red
+
+La librería folium necesita conexión a internet para descargar el mapa de fondo (las calles, edificios, etc., de OpenStreetMap).
+
+Si abres los archivos .html y ves los círculos y el slider, pero el fondo del mapa está gris o en blanco, significa que tu ordenador no puede conectarse a los servidores del mapa (posiblemente por un firewall de la red del hackathon o una conexión lenta).
