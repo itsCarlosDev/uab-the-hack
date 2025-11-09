@@ -62,7 +62,10 @@ El Borde del círculo cambia de color (de Verde [pocos clientes] a Rojo [muchos 
 
 El Relleno del círculo es transparente para poder ver el marcador del AP que hay debajo.
 
+
 Instalación y Uso
+
+
 
 Sigue estos pasos para ejecutar el proyecto.
 
@@ -121,3 +124,14 @@ Nota Importante sobre la Red
 La librería folium necesita conexión a internet para descargar el mapa de fondo (las calles, edificios, etc., de OpenStreetMap).
 
 Si abres los archivos .html y ves los círculos y el slider, pero el fondo del mapa está gris o en blanco, significa que tu ordenador no puede conectarse a los servidores del mapa (posiblemente por un firewall de la red del hackathon o una conexión lenta).
+
+5. Uso de CHATBOT AINA
+
+La prompt tendrá que ser clara y concisa, sin ambigüedades
+
+Será necesario actualizar datos de análisis y estadísticos, probablemente desde un csv o txt.
+Neccesario tambien instalar librerias requests
+
+
+
+
