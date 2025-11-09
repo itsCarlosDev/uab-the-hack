@@ -47,3 +47,116 @@ pre#answer {
   border-radius: 0.75rem;
   background: #f8f9fa;
 }
+
+.map-frame {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #000;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.map-frame iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.presentation .present-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(13, 30, 80, 0.06);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: #0d6efd;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.stat-label {
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.callout {
+  background: linear-gradient(120deg, #eef4ff, #fdfbff);
+  border-left: 4px solid #0d6efd;
+}
+
+.map-modal .modal-dialog {
+  max-width: 1100px;
+  width: min(92vw, 1100px);
+}
+
+.map-modal .modal-body {
+  padding: 1.5rem;
+}
+
+.map-modal .ratio {
+  --bs-aspect-ratio: 65%;
+}
+
+.chatbox-card {
+  background: #fff;
+  border: 1px solid #dbe2f3;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+}
+
+.chatbox-card textarea {
+  resize: vertical;
+  font-size: 1rem;
+}
+
+.chatbox-response {
+  border: 1px dashed #8ab4ff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background: #f8fbff;
+  min-height: 120px;
+}
+
+.chatbox-response pre {
+  margin: 0;
+  font-family: inherit;
+}
+
+.chatbox-response .response-label {
+  letter-spacing: 0.15em;
+  color: #0d6efd;
+}
+
+.prompt-presets .btn {
+  border-radius: 0.85rem;
+  border-width: 2px;
+}
+
+.prompt-presets .btn + .btn {
+  margin-top: 0.75rem;
+}
+
+.preset-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+  margin-right: 0.75rem;
+}

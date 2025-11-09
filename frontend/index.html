@@ -15,152 +15,215 @@
   <body class="bg-light">
     <div class="container py-5">
       <header class="mb-5 text-center">
-        <p class="brand-badge mb-1">uab the hack · demo</p>
-        <h1 class="mb-2">UAB Smart (nom del projecte)</h1>
-        <p class="text-muted">
-          Selecciona una secció per obrir un modal i carregar la visualització corresponent.
+        <p class="brand-badge mb-1">wifi uab · live insights</p>
+        <h1 class="display-5 fw-bold mb-3">WiFi UAB</h1>
+        <p class="text-muted lead">
+          Monitoratge en temps real de la qualitat i salut de la xarxa sense fils del campus.
         </p>
       </header>
 
-      <section>
-        <h2 class="h4 mb-3">Exploració de dades</h2>
+      <section class="presentation mb-5">
         <div class="row g-4">
-          <div class="col-md-6 col-xl-3">
+          <div class="col-md-6">
+            <div class="present-card h-100">
+              <p class="eyebrow">Objectius de la demo</p>
+              <h3 class="h4">Visibilitat intuïtiva per decisors</h3>
+              <ul class="list-unstyled mb-0">
+                <li>• Detectar zones amb cobertura feble en segons.</li>
+                <li>• Prioritzar incidències gràcies al nivell de <em>health</em>.</li>
+                <li>• Comunicar resultats en presentacions executives.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="present-card h-100">
+              <p class="eyebrow">Dataset filtrat</p>
+              <div class="row text-center">
+                <div class="col-6 mb-3">
+                  <p class="stat-value">2,333</p>
+                  <p class="stat-label">Snapshots d'APs</p>
+                </div>
+                <div class="col-6 mb-3">
+                  <p class="stat-value">3,199</p>
+                  <p class="stat-label">Registres de clients</p>
+                </div>
+                <div class="col-12">
+                  <p class="small text-muted mb-1">
+                    Període: Abril — Juliol 2025
+                  </p>
+                  <p class="small text-muted mb-0">
+                    Fonts: Access Points + Clients · WiFi UAB
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="h4 mb-3">Heatmaps i mapes dinàmics</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
             <button
               type="button"
               class="section-card btn btn-outline-primary w-100 text-start h-100"
               data-bs-toggle="modal"
-              data-bs-target="#apsModal"
+              data-bs-target="#signalModal"
             >
-              <span class="section-label">Activitat d'APs</span>
-              <span class="section-caption">Client count vs temps</span>
+              <span class="section-label">Intensitat del camp</span>
+              <span class="section-caption">Heatmap de signal_db / cobertura</span>
             </button>
           </div>
-          <div class="col-md-6 col-xl-3">
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="section-card btn btn-outline-primary w-100 text-start h-100"
+              data-bs-toggle="modal"
+              data-bs-target="#healthModal"
+            >
+              <span class="section-label">Health dels clients</span>
+              <span class="section-caption">Heatmap d'estat de dispositius</span>
+            </button>
+          </div>
+          <div class="col-md-4">
             <button
               type="button"
               class="section-card btn btn-outline-primary w-100 text-start h-100"
               data-bs-toggle="modal"
               data-bs-target="#clientsModal"
             >
-              <span class="section-label">Clients connectats</span>
-              <span class="section-caption">Distribució temporal</span>
+              <span class="section-label">Càrrega de clients</span>
+              <span class="section-caption">Mapa interactiu de volum de connexions</span>
             </button>
           </div>
-          <div class="col-md-6 col-xl-3">
-            <button
-              type="button"
-              class="section-card btn btn-outline-primary w-100 text-start h-100"
-              data-bs-toggle="modal"
-              data-bs-target="#hourModal"
-            >
-              <span class="section-label">Patrons horaris</span>
-              <span class="section-caption">Heatmap per hora/dia</span>
-            </button>
+        </div>
+      </section>
+
+      <section class="chatbox-section mt-5">
+        <div class="chatbox-card">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-9">
+              <label for="msg" class="form-label fw-semibold">Consulta preparada per a la IA</label>
+              <textarea
+                class="form-control"
+                id="msg"
+                rows="3"
+                placeholder="Escriu la teva pregunta"
+              ></textarea>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label d-none d-md-block">&nbsp;</label>
+              <button id="send" class="btn btn-primary w-100" type="button">Enviar consulta</button>
+            </div>
           </div>
-          <div class="col-md-6 col-xl-3">
-            <button
-              type="button"
-              class="section-card btn btn-outline-primary w-100 text-start h-100"
-              data-bs-toggle="modal"
-              data-bs-target="#qualityModal"
-            >
-              <span class="section-label">Qualitat de senyal</span>
-              <span class="section-caption">Comparativa per banda</span>
-            </button>
-          </div>
+        </div>
+        <div class="chatbox-response mt-4" aria-live="polite">
+          <p class="response-label text-uppercase small fw-semibold mb-2">Resposta de la IA</p>
+          <pre id="answer">Encara no hi ha resposta. Fes la teva consulta per veure'n una aquí.</pre>
+        </div>
+
+        <div class="prompt-presets mt-4">
+          <p class="preset-label text-muted small mb-2">Prompts ràpids</p>
+          <button
+            type="button"
+            class="btn btn-outline-secondary w-100 text-start prompt-template"
+            id="prompt-1"
+            data-prompt-template="Quina és la senyal mitjana registrada i com es compara amb les setmanes anteriors?"
+          >
+            <span class="preset-tag">Prompt 1</span>
+            Quina és la senyal mitjana registrada?
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary w-100 text-start prompt-template"
+            id="prompt-2"
+            data-prompt-template="Quin es el AP amb menys intensitat de camp?"
+          >
+            <span class="preset-tag">Prompt 2</span>
+            Quin es el AP amb menys intensitat de camp?
+          </button>
         </div>
       </section>
     </div>
 
     <!-- Modals -->
     <div
-      class="modal fade"
-      id="apsModal"
+      class="modal fade map-modal"
+      id="signalModal"
       tabindex="-1"
-      aria-labelledby="apsModalLabel"
+      aria-labelledby="signalModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-md-down">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="apsModalLabel">Activitat d'APs</h5>
+            <h5 class="modal-title" id="signalModalLabel">Heatmap d'intensitat del camp</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p class="text-muted">
-              Aquí pots incrustar la sortida del teu script Python per visualitzar client_count vs timestamp.
-            </p>
-            <div id="chart-aps" class="chart-placeholder"></div>
+            <div class="ratio ratio-16x9 map-frame">
+              <iframe
+                id="iframe-signal"
+                src=""
+                data-map-src="mapa_signal_dinamico.html"
+                title="Mapa dinàmic de signal"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div
-      class="modal fade"
+      class="modal fade map-modal"
+      id="healthModal"
+      tabindex="-1"
+      aria-labelledby="healthModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-md-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="healthModalLabel">Heatmap de health</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="ratio ratio-16x9 map-frame">
+              <iframe
+                id="iframe-health"
+                src=""
+                data-map-src="mapa_health_dinamico.html"
+                title="Mapa dinàmic de health"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade map-modal"
       id="clientsModal"
       tabindex="-1"
       aria-labelledby="clientsModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-md-down">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="clientsModalLabel">Clients connectats</h5>
+            <h5 class="modal-title" id="clientsModalLabel">Mapa de càrrega de clients</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p class="text-muted">
-              Utilitza aquesta àrea per carregar una visualització Python de l'activitat de clients.
-            </p>
-            <div id="chart-clients" class="chart-placeholder"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="hourModal"
-      tabindex="-1"
-      aria-labelledby="hourModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="hourModalLabel">Patrons horaris</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p class="text-muted">
-              Mostra gràfics per hora/dia aprofitant les dades de clients filtrades.
-            </p>
-            <div id="chart-hour" class="chart-placeholder"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="qualityModal"
-      tabindex="-1"
-      aria-labelledby="qualityModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="qualityModalLabel">Qualitat de senyal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p class="text-muted">
-              Afegeix aquí els gràfics comparatius (2.4GHz vs 5GHz, per exemple) generats amb Python.
-            </p>
-            <div id="chart-quality" class="chart-placeholder"></div>
+            <div class="ratio ratio-16x9 map-frame">
+              <iframe
+                id="iframe-clients"
+                src=""
+                data-map-src="mapa_clientes_dinamico.html"
+                title="Mapa dinàmic de clients"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
