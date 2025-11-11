@@ -61,6 +61,27 @@ python main.py
 
 El script escribira `mapa_health_dinamico.html`, `mapa_signal_dinamico.html` y `mapa_clientes_dinamico.html` en `apps/frontend/maps/`. No los subas al repo; mantenlos locales o compártelos por un storage externo si hace falta.
 
+### Generar los `rookie_filtered_*.json`
+
+Los ficheros `rookie_filtered_aps.json` y `rookie_filtered_clients.json` pesan entre 1 GB y 3 GB cada uno porque resumen ~25 GB de datos brutos de la UAB. Por eso no se versionan (estan en el `.gitignore`) y cada equipo debe generarlos localmente antes de ejecutar `main.py`.
+
+1. Descarga el dataset anonimizado oficial y colocarlo en `data/raw/anonymized_data/{aps,clients}` (mismo layout que en `docs/hackathon-kit`).
+2. Activa tu entorno virtual e instala dependencias.
+3. Ejecuta el script oficial de filtrado apuntando a las carpetas anteriores:
+
+```bash
+python docs/hackathon-kit/scripts/create_filtered_json.py ^
+  --aps-dir data/raw/anonymized_data/aps ^
+  --clients-dir data/raw/anonymized_data/clients ^
+  --aps-output data/processed/rookie/rookie_filtered_aps.json ^
+  --clients-output data/processed/rookie/rookie_filtered_clients.json ^
+  --skip-combined
+```
+
+(en macOS/Linux cambia `^` por `\` o dejalo en una sola linea).
+
+Los archivos resultantes deben quedarse en tu maquina o en un almacenamiento compartido (S3, GDrive, etc.) pero nunca se suben al repositorio para evitar volver a superar el limite de GitHub.
+
 ## Requisitos
 
 - Python 3.10 o superior con `pip`.
@@ -168,3 +189,4 @@ La variable `FRONTEND_ORIGINS` permite ampliar la lista de origenes autorizados 
 6. Revisar que el chatbot responda bien con las instrucciones actualizadas.
 
 Listo: clonas, instalas, generas mapas y tienes material suficiente para impresionar al jurado.
+
