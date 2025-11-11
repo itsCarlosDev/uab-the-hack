@@ -9,7 +9,7 @@ Este repositorio reune todo lo que usamos para el hackathon de la UAB: el dashbo
 - **Docs oficiales**: el kit de la UAB tal cual lo entregaron, en `docs/hackathon-kit`.
 - **Toolkit geoespacial**: scripts y ejemplos para experimentar con los datos sin tocar la demo principal.
 
-## Estructura del repositorio
+El script main.py lee los datos de los Puntos de Acceso (APs) y de los clientes conectados, los procesa y genera tres mapas dinámicos e interactivos en formato .html.
 
 ```
 .
