@@ -7,3 +7,4 @@ apps/frontend/maps/*.html
 data/processed/rookie/rookie_filtered_*.json
 docs/hackathon-kit/data/rookie_filtered_*.json
 frontend/rookie_filtered_*.json
+frontend/*.html

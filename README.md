@@ -36,7 +36,7 @@ GitHub rechaza cualquier archivo por encima de 100 MB, asi que solo dejamos nota
 |---------|------------------|-------------------|
 | `data/processed/rookie/` | `rookie_filtered_aps.json`, `rookie_filtered_clients.json` | Lanza `docs/hackathon-kit/scripts/create_filtered_json.py` (ver instrucciones abajo) para recrearlos a partir de `data/raw/anonymized_data`. |
 | `docs/hackathon-kit/data/` | Copia de los mismos `rookie_filtered_*.json` del kit oficial | Descarga los ficheros desde el enlace de `docs/hackathon-kit/data/onedrive.txt` y guardalos aqui si necesitas el kit completo offline. |
-| `frontend/` | `rookie_filtered_aps.json`, `rookie_filtered_clients.json` para flujos legacy | Copia aqui los JSON generados en `data/processed/rookie/` cuando un script antiguo los requiera. |
+| `frontend/` | `rookie_filtered_aps.json`, `rookie_filtered_clients.json`, `mapa_*_dinamico.html` (flujo legacy) | Corre `python frontend/main.py` para generar los HTML usando los JSON locales; nunca los subas a Git porque superan los 100 MB. |
 | `apps/frontend/maps/` | `mapa_health_dinamico.html`, `mapa_signal_dinamico.html`, `mapa_clientes_dinamico.html` | Ejecuta `python main.py` para regenerarlos; cada HTML pesa ~250 MB, asi que mantenlos fuera de Git. |
 
 ## Como funciona el script principal (`main.py`)
