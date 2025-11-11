@@ -48,6 +48,19 @@ El script main.py lee los datos de los Puntos de Acceso (APs) y de los clientes 
 
 Todos incluyen slider temporal y boton "Play" para recorrer las horas del dataset.
 
+### Regenerar los mapas localmente
+
+Los tres HTML acabados rondan los 250 MB cada uno porque condensan ~25 GB de datos anonimizados; GitHub no permite subirlos (límite de 100 MB por archivo), asi que la carpeta `apps/frontend/maps/` esta en el `.gitignore`. Para obtenerlos en tu maquina:
+
+```bash
+# Desde la raiz del repo
+python -m venv .venv && source .venv/bin/activate   # opcional si no tienes entorno
+pip install -r apps/backend/requirements.txt
+python main.py
+```
+
+El script escribira `mapa_health_dinamico.html`, `mapa_signal_dinamico.html` y `mapa_clientes_dinamico.html` en `apps/frontend/maps/`. No los subas al repo; mantenlos locales o compártelos por un storage externo si hace falta.
+
 ## Requisitos
 
 - Python 3.10 o superior con `pip`.
