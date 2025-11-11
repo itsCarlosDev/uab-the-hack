@@ -1,0 +1,150 @@
+Objetivo: Explorar y visualizar el dataset de WiFi de la UAB.
+
+Dataset: 2.333 archivos de Access Points (APs) y 3.199 archivos de clientes (Abril-Julio 2025).
+
+Resumen de Datos Cargados
+Access Points (APs):
+
+Registros totales cargados: 2.663.195
+
+Archivos procesados: 2.333
+
+Memoria utilizada: 3552.10 MB
+
+Clientes:
+
+Registros totales cargados: 14.640.925
+
+Archivos procesados: 3.199
+
+Memoria utilizada: 26207.45 MB
+
+Resumen de Exploración
+Access Points (APs):
+
+
+Registros totales: 2.663.195 
+
+
+Columnas: 33 
+
+
+Memoria: 3572.42 MB 
+
+
+Rango temporal: 2024-10-23 a 2025-04-29 (187 días) 
+
+Clientes:
+
+
+Registros totales: 14.640.925 
+
+
+Columnas: 46 
+
+
+Memoria: 27794.72 MB 
+
+
+Rango temporal: 2025-03-28 a 2025-07-10 (104 días) 
+
+Estadísticas Básicas
+Access Points:
+
+
+APs únicos en el campus: 1.147 
+
+Estado de los APs (registros):
+
+Up: 2.513.363 
+
+Down: 149.832 
+
+Clientes/Dispositivos:
+
+
+Dispositivos únicos: 202.340 
+
+Distribución por tipo de red (Top 2):
+
+UAB: 10.803.753 
+
+eduroam: 3.700.810 
+
+Top 3 Sistemas Operativos:
+
+Apple iOS Device: 4.454.656 
+
+Windows 8/10/11: 2.974.238 
+
+Android: 2.911.933 
+
+Top 2 Categorías de dispositivos:
+
+SmartDevice: 8.653.083 
+
+Computer: 5.096.354 
+
+Insights de Visualizaciones
+Zonas "Hotspot" (APs más utilizados):
+
+
+El AP más usado es: AP-BIBSOC08 con 124.985 conexiones 
+
+
+Patrones Temporales (Actividad por Hora):
+
+
+Hora pico: 7:00 con 2.086.370 dispositivos conectados 
+
+
+Distribución de Calidad de Señal:
+
+
+Señal promedio: -64.1 dBm 
+
+
+Dispositivos con señal débil (<-60 dBm): 6.629.869 (45.3%) 
+
+Tipos de Red (UAB vs eduroam):
+
+
+UAB: 10.803.753 dispositivos (73.8%) 
+
+
+
+
+
+eduroam: 3.700.810 dispositivos (25.3%) 
+
+
+
+Bandas WiFi (2.4 GHz vs 5 GHz):
+
+
+5 GHz: 11.161.535 dispositivos 
+
+
+2.4 GHz: 2.912.195 dispositivos 
+
+
+Insights y Conclusiones
+¿Cuál es el AP más utilizado? ¿En qué edificio está?
+
+AP-BIBSOC08, en el edificio de la biblioteca de ciencias sociales. 
+
+¿A qué hora hay más actividad?
+
+A las 7 am. 
+
+¿Qué porcentaje de dispositivos tiene señal débil?
+
+45.3%. 
+
+¿Cuál es la red más utilizada (UAB o eduroam)?
+
+UAB es mucho más utilizada que eduroam. 
+
+¿Qué banda WiFi es más popular (2.4 o 5 GHz)? ¿Por qué?
+
+5Ghz, se utiliza para evitar interferencias y saturación.

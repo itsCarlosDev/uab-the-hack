@@ -1,0 +1,66 @@
+[
+  {
+    "associated_device": "AP_1f384c632326",
+    "associated_device_mac": "AP_217614a1e20f",
+    "associated_device_name": "AP-ECOSOC02",
+    "authentication_type": "MAC Authentication",
+    "band": 2.4,
+    "channel": "11 (20 MHz)",
+    "client_category": "Computer",
+    "client_type": "WIRELESS",
+    "connected_device_type": "AP",
+    "connection": "802.11ax, 802.11k, 802.11v",
+    "encryption_method": "OPEN",
+    "failure_stage": "",
+    "gateway_serial": "GW_fd4c2dfd1066",
+    "group_id": 97,
+    "group_name": "Bellaterra",
+    "hostname": "HOST_0ab7c655cbe5",
+    "ht_type": 9,
+    "label_id": [
+      2
+    ],
+    "labels": [
+      "UAB-7240XM"
+    ],
+    "last_connection_time": 1744635391000,
+    "macaddr": "CLIENT_0ab7c655cbe5",
+    "manufacturer": "Apple, Inc.",
+    "name": "NAME_0ab7c655cbe5",
+    "network": "UAB",
+    "os_type": "Mac OS",
+    "phy_type": 2,
+    "radio_mac": "RADIO_23afa498d5e5",
+    "radio_number": 1,
+    "site": "UAB",
+    "user_role": "conv_authenticad",
+    "username": "USER_0ab7c655cbe5"
+  },
+  {
+    "associated_device": "AP_c218cb44f536",
+    "associated_device_mac": "AP_559e0475d3ad",
+    "associated_device_name": "AP-SAF07",
+    "client_category": "Generic",
+    "client_type": "WIRELESS",
+    "connected_device_type": "AP",
+    "failure_stage": "",
+    "group_id": 97,
+    "group_name": "Bellaterra",
+    "hostname": "HOST_04b6be67ba85",
+    "label_id": [
+      2
+    ],
+    "labels": [
+      "UAB-7240XM"
+    ],
+    "last_connection_time": 1744642889132,
+    "macaddr": "CLIENT_f674b86f0189",
+    "manufacturer": "",
+    "name": "NAME_f674b86f0189",
+    "network": "eduroam",
+    "os_type": "Unclassified Device",
+    "site": "UAB",
+    "user_role": null,
+    "username": "USER_04b6be67ba85"
+  }
+]
